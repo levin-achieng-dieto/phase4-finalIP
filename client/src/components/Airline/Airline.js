@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from 'react'
-import axios from 'axios'
+// import axios from 'axios'
 import styled from 'styled-components'
 import Review from './Review'
 import ReviewForm from './ReviewForm'

@@ -30,14 +30,11 @@ const Airlines = () => {
 
   useEffect(() => {
     axios.get('/airlines.json')
-    .then( resp => setAirlines(resp.data.data))
+    .then( resp => console.log(resp.data))
     .catch( data => console.log('error', data))
   }, [])
 
-  const grid = airlines.map( (airline, index) => {
-    const { name, image_url, slug, average_score } = airline.attributes
-
-    return (
+  const grid = airlines.map( (index, name, image_url, slug, average_score) => (
       <Airline 
         key={index}
         name={name}
@@ -45,8 +42,7 @@ const Airlines = () => {
         slug={slug}
         average_score={average_score}
       />
-    )
-  })
+  ))
 
   return (
     <Home>

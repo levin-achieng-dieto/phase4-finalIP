@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { BrowserRouter as Router, Link } from 'react-router-dom'
+import { BrowserRouter as Link } from 'react-router-dom'
 import Rating from '../Rating/Rating'
 
 const Card = styled.div`
@@ -48,7 +48,7 @@ const LinkWrapper = styled.div`
   }
 `
 
-const Airline = ({ name, image_url, average_score, slug, ...props }) => {
+const Airline = ({ name, image_url, average_score, slug}) => {
   return (
     <Card>
       <AirlineLogo>
