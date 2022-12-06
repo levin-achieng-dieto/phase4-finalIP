@@ -21,7 +21,7 @@ class AuthProvider extends Component {
   login = (user, props, e) => {
     e.preventDefault()
 
-    AxiosWrapper.post('/api/v1/auth', { user: { ...user } }, { withCredentials: true })
+    AxiosWrapper.post('/auth', { user: { ...user } }, { withCredentials: true })
     .then( _resp => {
       this.setState({ isAuth: true })
       props.history.push("/")
@@ -32,7 +32,7 @@ class AuthProvider extends Component {
   signup = (user, props, e) => {
     e.preventDefault()
 
-    AxiosWrapper.post('/api/v1/registrations', { user: { ...user } }, { withCredentials: true })
+    AxiosWrapper.post('/registrations', { user: { ...user } }, { withCredentials: true })
     .then( resp => {
       this.setState({ isAuth: true })
       props.history.push("/")
@@ -43,7 +43,7 @@ class AuthProvider extends Component {
   forgotPass = (user, props, e) => {
     e.preventDefault()
 
-    AxiosWrapper.post('/api/v1/auth/password/forgot', { email: user.email })
+    AxiosWrapper.post('/auth/password/forgot', { email: user.email })
     .then( resp => {
       this.setState({ isAuth: false })
       props.history.push("/forgot-password/complete?success=true")
@@ -54,7 +54,7 @@ class AuthProvider extends Component {
   resetPass = (user, token, e) => {
     e.preventDefault()
 
-    AxiosWrapper.post('/api/v1/auth/password/reset', { password: user.password, token })
+    AxiosWrapper.post('/auth/password/reset', { password: user.password, token })
     .then( _resp => {
       this.setState({ isAuth: false })
       window.location.href = "/login"
@@ -65,7 +65,7 @@ class AuthProvider extends Component {
   logout = (e) => {
     e.preventDefault()
 
-    AxiosWrapper.delete('/api/v1/auth/logout')
+    AxiosWrapper.delete('/auth/logout')
     .then( _resp => {
       this.setState({ isAuth: false })
       window.location.href = '/'

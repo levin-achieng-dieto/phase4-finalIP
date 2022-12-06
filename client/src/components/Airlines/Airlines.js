@@ -29,13 +29,7 @@ const Airlines = () => {
   const [airlines, setAirlines] = useState([]);
 
   useEffect(() => {
-    /* 
-      For the v2 graphql api (experimental) you can use:
-      axios.post('/api/v2/graphql', { query: airlinesQuery })
-      You'll also need to uncomment this line above:
-      import airlinesQuery from '../../queries/airlinesQuery'
-    */
-    axios.get('/api/v1/airlines.json')
+    axios.get('/airlines.json')
     .then( resp => setAirlines(resp.data.data))
     .catch( data => console.log('error', data))
   }, [])

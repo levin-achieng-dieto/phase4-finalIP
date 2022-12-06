@@ -1,26 +1,15 @@
 import React, { useState, useEffect, Fragment } from 'react'
-/*import axios from 'axios'*/
+import axios from 'axios'
 import styled from 'styled-components'
 import Review from './Review'
 import ReviewForm from './ReviewForm'
 import Header from './Header'
 import AxiosWrapper from '../../utils/Requests/AxiosWrapper'
-/*
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
-Uncomment these if you want to use the V2 API (Graphql):
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
-import airlineQuery from '../../queries/airlineQuery'
-import createReviewQuery from '../../queries/createReviewQuery'
-import deleteReviewQuery from '../../queries/deleteReviewQuery'
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
-*/
 
  const Wrapper = styled.div`
    margin-left: auto;
    margin-right: auto;
  `
-
-
 const Column = styled.div`
   background: #fff; 
   max-width: 50%;
@@ -38,7 +27,6 @@ const Column = styled.div`
     border-top: 1px solid rgba(255,255,255,0.5);
   }
 `
-
 const Main = styled.div`
   padding-left: 60px;
 `
@@ -53,7 +41,7 @@ const Airline = (props) => {
   useEffect(()=> {
     const slug = props.match.params.slug
 
-    AxiosWrapper.get(`/api/v1/airlines/${slug}`)
+    AxiosWrapper.get(`/airlines/${slug}`)
     .then( (resp) => {
       setAirline(resp.data)
       setReviews(resp.data.included)
@@ -72,7 +60,7 @@ const Airline = (props) => {
     e.preventDefault()
 
     const airline_id = parseInt(airline.data.id)
-    AxiosWrapper.post('/api/v1/reviews', { ...review, airline_id })
+    AxiosWrapper.post('/reviews', { ...review, airline_id })
     .then( (resp) => {
       setReviews([...reviews, resp.data.data])
       setReview({ title: '', description: '', score: 0 })
@@ -95,7 +83,7 @@ const Airline = (props) => {
   const handleDestroy = (id, e) => {
     e.preventDefault()
 
-    AxiosWrapper.delete(`/api/v1/reviews/${id}`)
+    AxiosWrapper.delete(`/reviews/${id}`)
     .then( (data) => {
       const included = [...reviews]
       const index = included.findIndex( (data) => data.id === id )
