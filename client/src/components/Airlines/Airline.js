@@ -59,7 +59,7 @@ const Airline = ({airline}) => {
       </AirlineName>
       <Rating score={airline.average_score} />
       <LinkWrapper>
-        <Link to={"/airlines/" + airline.slug}>View Airline</Link>
+        <Link to={"/airlines/" + airline.id}>View Airline</Link>
       </LinkWrapper>
     </Card>
   )

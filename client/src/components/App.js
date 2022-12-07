@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import Login from './Auth/Login'
 import Register from './Auth/Register'
 import Airlines from './Airlines/Airlines'
@@ -15,18 +15,12 @@ class App extends Component {
     return(
       <AuthProvider>
         <Navbar/>
-        <Route>
+        <Switch>
           <Route exact path="/" component={Airlines} />
           <Route exact path="/airlines/:slug" component={Airline} />
           <UnprotectedRoute path="/login" component={Login}/>
           <UnprotectedRoute exact path="/register" component={Register} />
-<<<<<<< HEAD
-          <UnprotectedRoute path="/forgot-password" component={Forgot}/>
-          <UnprotectedRoute path="/reset-password" component={Reset}/>
-        </Route>
-=======
         </Switch>
->>>>>>> 8cda6aa7bb6b87594305f26b9900ce9b5eb61a74
       </AuthProvider>
     )
   }
