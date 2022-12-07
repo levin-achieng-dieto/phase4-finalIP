@@ -8,8 +8,8 @@ class AirlinesController < ApplicationController
     end
 
     def show
-        airlines = Airline.find(params[:id])
-        render json: airlines, status: :ok
+        airline = Airline.find(params[:id])
+        render json: airline, serializer: SingleAirlineSerializer
     end
 
     def create
