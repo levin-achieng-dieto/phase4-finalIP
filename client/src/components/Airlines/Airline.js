@@ -57,7 +57,7 @@ const Airline = ({airline}) => {
       <AirlineName>
         {airline.name}
       </AirlineName>
-      <div className='airline-score'>{airline.reviews.score}</div>
+      <div>score={airline.avg_score}</div> 
       <LinkWrapper>
         <Link to={"/airlines/" + airline.id}>View Airline</Link>
       </LinkWrapper>
