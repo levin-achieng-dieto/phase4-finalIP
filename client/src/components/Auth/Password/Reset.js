@@ -77,7 +77,7 @@ const Reset = (props) => {
   return (
     <AuthConsumer>
       { ({ resetPass }) => (
-        <ResetWrapper>
+        <LoginWrapper>
           <FormWrapper>
             <FormContainer>
               <Form onSubmit={resetPass.bind(this, user, token)}>
@@ -86,11 +86,11 @@ const Reset = (props) => {
                   <label>New Password</label>
                   <Input onChange={handleChange} type="password" value={user.password} placeholder="password" name="password"/>
                 </Field>
-                <ResetButton type="submit">Save Password</ResetButton>
+                <LoginButton type="submit">Save Password</LoginButton>
               </Form>   
             </FormContainer>
           </FormWrapper>
-        </ResetWrapper>
+        </LoginWrapper>
       )}
     </AuthConsumer>
   )
