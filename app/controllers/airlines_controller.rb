@@ -3,6 +3,7 @@ class AirlinesController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :rescue_record_not_found
 
     def index
+        user = User.find_by(id: session[:user_id])
         airlines = Airline.all
         render json: airlines, status: :ok
     end
