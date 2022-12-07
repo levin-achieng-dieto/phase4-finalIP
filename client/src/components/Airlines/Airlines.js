@@ -29,30 +29,17 @@ const Airlines = () => {
   const [airlines, setAirlines] = useState([]);
 
   useEffect(() => {
-    /* 
-      For the v2 graphql api (experimental) you can use:
-      axios.post('/api/v2/graphql', { query: airlinesQuery })
-      You'll also need to uncomment this line above:
-      import airlinesQuery from '../../queries/airlinesQuery'
-    */
-    axios.get('/api/v1/airlines.json')
-    .then( resp => setAirlines(resp.data.data))
+    axios.get('/airlines.json')
+    .then( resp => setAirlines(resp.data))
     .catch( data => console.log('error', data))
   }, [])
 
-  const grid = airlines.map( (airline, index) => {
-    const { name, image_url, slug, average_score } = airline.attributes
-
-    return (
+  const grid = airlines.map( (airline) => (
       <Airline 
-        key={index}
-        name={name}
-        image_url={image_url}
-        slug={slug}
-        average_score={average_score}
+        key={airline.id}
+        airline={airline}
       />
-    )
-  })
+  ))
 
   return (
     <Home>

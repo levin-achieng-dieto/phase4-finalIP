@@ -1,4 +1,4 @@
-import React, { Component, useState }  from 'react'
+import React, { useState }  from 'react'
 import { AuthConsumer } from '../AuthContext'
 import styled from 'styled-components'
 
