@@ -44,4 +44,3 @@ const Header = ({attributes, reviews, average, ...props}) => {
 }
 
 export default Header
-

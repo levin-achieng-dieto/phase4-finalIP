@@ -2,7 +2,7 @@ import React, { Component, useEffect, useState }  from 'react'
 import { AuthConsumer } from '../../AuthContext'
 import styled from 'styled-components'
 
-const LoginWrapper = styled.div``
+const ResetWrapper = styled.div``
 const FormWrapper = styled.div`
   margin-top:50px;
 `
@@ -42,7 +42,7 @@ const Input = styled.input`
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
 `
-const LoginButton = styled.button`
+const ResetButton = styled.button`
   position: relative;
   display: inline-block;
   padding: 6px 12px;

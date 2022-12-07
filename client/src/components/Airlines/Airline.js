@@ -48,7 +48,7 @@ const LinkWrapper = styled.div`
   }
 `
 
-const Airline = ({airline}) => {
+const Airline = ({ airline }) => {
   return (
     <Card>
       <AirlineLogo>

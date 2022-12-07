@@ -11,3 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(document.createElement('div')),
   )
 })
+
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+//  root.render(
+//   <Router>
+//     <Route path="/" component = {App} />
+//   </Router>
+//  )

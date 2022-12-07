@@ -17,7 +17,7 @@ class App extends Component {
         <Navbar/>
         <Switch>
           <Route exact path="/" component={Airlines} />
-          <Route exact path="/airlines/:slug" component={Airline} />
+          <Route exact path="/airlines/:id" component={Airline} />
           <UnprotectedRoute path="/login" component={Login}/>
           <UnprotectedRoute exact path="/register" component={Register} />
         </Switch>

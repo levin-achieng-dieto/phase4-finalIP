@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
+// import { Route } from 'react-router-dom'
 import { AuthConsumer } from './AuthContext'
 
 // Redirect users away from these routes if they are already logged in
