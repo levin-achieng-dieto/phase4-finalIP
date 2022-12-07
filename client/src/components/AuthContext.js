@@ -21,7 +21,7 @@ class AuthProvider extends Component {
   login = (user, props, e) => {
     e.preventDefault()
 
-    AxiosWrapper.post('/api/v1/auth', { user: { ...user } }, { withCredentials: true })
+    AxiosWrapper.post('/auth', { user: { ...user } }, { withCredentials: true })
     .then( _resp => {
       this.setState({ isAuth: true })
       props.history.push("/")
@@ -32,7 +32,7 @@ class AuthProvider extends Component {
   signup = (user, props, e) => {
     e.preventDefault()
 
-    AxiosWrapper.post('/api/v1/registrations', { user: { ...user } }, { withCredentials: true })
+    AxiosWrapper.post('/registrations', { user: { ...user } }, { withCredentials: true })
     .then( resp => {
       this.setState({ isAuth: true })
       props.history.push("/")

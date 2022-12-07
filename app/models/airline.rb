@@ -3,6 +3,7 @@ class Airline < ApplicationRecord
 
     validates :name, uniqueness: true
     validates :name, :image_url, presence: true
+    
     # before_create :slugify
 
     # def slugify

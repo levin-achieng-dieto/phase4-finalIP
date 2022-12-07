@@ -48,18 +48,18 @@ const LinkWrapper = styled.div`
   }
 `
 
-const Airline = ({ name, image_url, average_score, slug, ...props }) => {
+const Airline = ({ airline }) => {
   return (
     <Card>
       <AirlineLogo>
-        <img src={image_url} alt={name} width="50"/>
+        <img src={airline.image_url} alt={airline.name} width="50"/>
       </AirlineLogo>
       <AirlineName>
-        {name}
+        {airline.name}
       </AirlineName>
-      <Rating score={average_score} />
+      <Rating score={airline.average_score} />
       <LinkWrapper>
-        <Link to={"/airlines/" + slug}>View Airline</Link>
+        <Link to={"/airlines/" + airline.id}>View Airline</Link>
       </LinkWrapper>
     </Card>
   )

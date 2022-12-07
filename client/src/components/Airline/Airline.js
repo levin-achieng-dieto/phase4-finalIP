@@ -53,7 +53,7 @@ const Airline = (props) => {
   useEffect(()=> {
     const slug = props.match.params.slug
 
-    AxiosWrapper.get(`/api/v1/airlines/${slug}`)
+    AxiosWrapper.get(`/airlines/${slug}`)
     .then( (resp) => {
       setAirline(resp.data)
       setReviews(resp.data.included)
@@ -72,7 +72,7 @@ const Airline = (props) => {
     e.preventDefault()
 
     const airline_id = parseInt(airline.data.id)
-    AxiosWrapper.post('/api/v1/reviews', { ...review, airline_id })
+    AxiosWrapper.post('/reviews', { ...review, airline_id })
     .then( (resp) => {
       setReviews([...reviews, resp.data.data])
       setReview({ title: '', description: '', score: 0 })
@@ -95,7 +95,7 @@ const Airline = (props) => {
   const handleDestroy = (id, e) => {
     e.preventDefault()
 
-    AxiosWrapper.delete(`/api/v1/reviews/${id}`)
+    AxiosWrapper.delete(`/reviews/${id}`)
     .then( (data) => {
       const included = [...reviews]
       const index = included.findIndex( (data) => data.id === id )
@@ -163,4 +163,53 @@ const Airline = (props) => {
 }
 
 export default Airline
+
+
+
+
+
+
+// import React, {useState, useEffect} from "react"
+// import axios from 'axios'
+// import Header from './Header'
+
+// const Airline = (props) => {
+//   const [airline, setAirline] = useState({})
+// // const [reviews, setReviews] = useState([])
+// const [review, setReview] = useState({ title: '', description: '', score: 0 })
+//  //const [error, setError] = useState('')
+//  const [loaded, setLoaded] = useState(false)
+
+// useEffect(() => {
+//   const slug = props.match.params.id
+//   const url = '/airlines/${slug}'
+
+//   axios.get(url)
+//   .then(resp => {
+//     setAirline(resp.data)
+//     setLoaded(true)
+//   })
+//   .catch( resp => console.log(resp))
+// }, [])
+
+// return (
+//   <div className="wrapper">
+//     <div className="column">
+//       {
+//         loaded &&
+//         <Header
+//         attributes={airline.data.attribute} 
+//         reviews={airline.included}
+//         />
+//       }
+//       <div className="reviews"></div>
+//     </div>
+//     <div>
+//       <div className="review-forms">[Review form goes here]</div>
+//     </div>
+//   </div>
+// )
+
+// }
+// export default Airline
 
