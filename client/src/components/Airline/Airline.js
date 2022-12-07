@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react'
-// import axios from 'axios'
+import axios from 'axios'
 import styled from 'styled-components'
-import Review from './Review'
+// import Review from './Review'
 import ReviewForm from './ReviewForm'
 import Header from './Header'
 import AxiosWrapper from '../../utils/Requests/AxiosWrapper'
@@ -23,7 +23,7 @@ const Column = styled.div`
     display: none;
   }
   &:last-child {
-    background: black;
+    background: #fff;
     border-top: 1px solid rgba(255,255,255,0.5);
   }
 `
@@ -39,12 +39,12 @@ const Airline = (props) => {
   const [loaded, setLoaded] = useState(false)
 
   useEffect(()=> {
-    const slug = props.match.params.slug
+    const id = props.match.params.id
 
-    AxiosWrapper.get(`/airlines/${slug}`)
+    axios.get(`/airlines/${id}`)
     .then( (resp) => {
       setAirline(resp.data)
-      setReviews(resp.data.included)
+      setReviews(resp.data.reviews)
       setLoaded(true)
     })
     .catch( data => console.log('Error', data) )
@@ -61,8 +61,8 @@ const Airline = (props) => {
 
     const airline_id = parseInt(airline.data.id)
     AxiosWrapper.post('/reviews', { ...review, airline_id })
-    .then( (resp) => {
-      setReviews([...reviews, resp.data.data])
+    .then( resp => {
+      setReviews([...reviews, airline.data, resp.data])
       setReview({ title: '', description: '', score: 0 })
       setError('')
     })
@@ -79,20 +79,20 @@ const Airline = (props) => {
     })
   }
 
-  // Destroy a review
-  const handleDestroy = (id, e) => {
-    e.preventDefault()
+  // // Destroy a review
+  // const handleDestroy = (id, e) => {
+  //   e.preventDefault()
 
-    AxiosWrapper.delete(`/reviews/${id}`)
-    .then( (data) => {
-      const included = [...reviews]
-      const index = included.findIndex( (data) => data.id === id )
-      included.splice(index, 1)
+  //   AxiosWrapper.delete(`/reviews/${id}`)
+  //   .then( (data) => {
+  //     const included = [...reviews]
+  //     const index = included.findIndex( (data) => data.id === id )
+  //     included.splice(index, 1)
 
-      setReviews(included)
-    })
-    .catch( data => console.log('Error', data) )
-  }
+  //     setReviews(included)
+  //   })
+  //   .catch( data => console.log('Error', data) )
+  // }
 
   // set score
   const setRating = (score, e) => {
@@ -100,24 +100,24 @@ const Airline = (props) => {
     setReview({ ...review, score })
   }
 
-  let total, average = 0
-  let userReviews
+  // let total, average = 0
+  // let userReviews
 
-  if (reviews && reviews.length > 0) {
-    total = reviews.reduce((total, review) => total + review.attributes.score, 0)
-    average = total > 0 ? (parseFloat(total) / parseFloat(reviews.length)) : 0
+  // if (reviews && reviews.length > 0) {
+  //   total = reviews.reduce((total, review) => total + review.attributes.score, 0)
+  //   average = total > 0 ? (parseFloat(total) / parseFloat(reviews.length)) : 0
     
-    userReviews = reviews.map( (review, index) => {
-      return (
-        <Review 
-          key={index}
-          id={review.id}
-          attributes={review.attributes}
-          handleDestroy={handleDestroy}
-        />
-      )
-    })
-  }
+  //   userReviews = reviews.map( (review, index) => {
+  //     return (
+  //       <Review 
+  //         key={index}
+  //         id={review.id}
+  //         attributes={review.attributes}
+  //         handleDestroy={handleDestroy}
+  //       />
+  //     )
+  //   })
+  // }
 
   return(
     <Wrapper>
@@ -127,16 +127,15 @@ const Airline = (props) => {
           <Column>
             <Main>
               <Header 
-                attributes={airline.data.attributes}
-                reviews={reviews}
-                average={average}
+                airline={airline}
+                reviews={airline.reviews}
               />
-              {userReviews}
+              
             </Main>
           </Column>
           <Column>
             <ReviewForm
-              name={airline.data.attributes.name}
+              name={airline.name}
               review={review}
               handleChange={handleChange}
               handleSubmit={handleSubmit}

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Rating from '../Rating/Rating'
+// import Rating from '../Rating/Rating'
 
 const Wrapper = styled.div`
   padding: 50px 100px 50px 0px;
@@ -26,21 +26,21 @@ const ScoreOutOf = styled.div`
   font-weight: bold;
 `
 
-const Header = ({attributes, reviews, average, ...props}) => {
-  const { image_url, name } = attributes
-
-  return (
+const Header = ({airline, reviews}) => {
+  return(
     <Wrapper>
-      <h1><img src={image_url} height="50" width="50" alt={name} /> {name}</h1>
+      <h1>
+        <img src={airline.image_url} height="50" width="50" alt={airline.name} /> {airline.name}
+      </h1>
       <div>
         <UserReviewCount>
           <span className="review-count">{reviews ? reviews.length : 0}</span> user reviews
         </UserReviewCount>
-        <Rating score={average} />
-        <ScoreOutOf>{average.toFixed(1)} out of 5 stars</ScoreOutOf>       
+        <div>{airline.avg_score}</div> 
+        <ScoreOutOf>3 out of 5 stars</ScoreOutOf>       
       </div>
-    </Wrapper> 
-  )
+    </Wrapper>
+  ) 
 }
 
 export default Header

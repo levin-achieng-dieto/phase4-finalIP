@@ -28,8 +28,8 @@ const LinkWrapper = styled.div`
   a {
     color: #fff;
     background-color: #71b406;
-    border-radius: 4px;
-    padding: 10px 50px;
+    border-radius: 3px;
+    padding: 8px 30px;
     cursor: pointer;
     border-radius: 3px;
     border: 1px solid #71b406;

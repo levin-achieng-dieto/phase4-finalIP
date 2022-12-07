@@ -27,4 +27,8 @@ class ReviewsController < ApplicationController
     def rescue_record_not_found
         render json: {error: "Review not found"}, status: :not_found
     end
+
+    def airline
+        @airline ||= Airline.find(params[airline_id])
+    end
 end
