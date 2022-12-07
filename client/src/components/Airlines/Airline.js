@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { BrowserRouter as Link } from 'react-router-dom'
+import { BrowserRouter as Router, Link } from 'react-router-dom'
 import Rating from '../Rating/Rating'
 
 const Card = styled.div`
@@ -59,7 +59,7 @@ const Airline = ({airline}) => {
       </AirlineName>
       <Rating score={airline.average_score} />
       <LinkWrapper>
-        <Link to={"/airlines/" + airline.slug}>View Airline</Link>
+        <Link to={"/airlines/" + airline.id}>View Airline</Link>
       </LinkWrapper>
     </Card>
   )

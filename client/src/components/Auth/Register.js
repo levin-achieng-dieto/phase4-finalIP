@@ -83,7 +83,7 @@ const Register = (props) => {
                   <label>Password</label>
                   <Input onChange={handleChange} type="password"value={user.password} placeholder="password" name="password"/>
                 </Field>
-                <LoginButton type="submit">Login</LoginButton>
+                <LoginButton type="submit">Sign Up</LoginButton>
               </Form>   
             </FormContainer>
           </FormWrapper>
