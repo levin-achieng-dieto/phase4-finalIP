@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 2022_12_07_104136) do
     t.string "title"
     t.string "description"
     t.integer "score"
-    t.integer "user_id"
     t.integer "airline_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
