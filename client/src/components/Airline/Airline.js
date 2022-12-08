@@ -82,11 +82,11 @@ const Airline = (props) => {
     })
       .then((res) => res.json())
       .then((resp) => {
-        setReviews([...reviews, resp.data])
-        setReview({ title: '', description: '', score: 0 })
-      })
+        setReviews([...reviews, resp.data]);
+        setReview({ title: '', description: '', score: 0 });
+      });
     e.target.reset();
-  
+    };
 
   // // Destroy a review
   // const handleDestroy = (id, e) => {
@@ -101,7 +101,7 @@ const Airline = (props) => {
   //     setReviews(included)
   //   })
   //   .catch( data => console.log('Error', data) )
-  }
+  // }
 
   // set score
   const setRating = (score, e) => {
