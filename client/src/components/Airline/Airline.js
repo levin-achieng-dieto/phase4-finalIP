@@ -4,7 +4,7 @@ import styled from 'styled-components'
 // import Review from './Review'
 import ReviewForm from './ReviewForm'
 import Header from './Header'
-import AxiosWrapper from '../../utils/Requests/AxiosWrapper'
+// import AxiosWrapper from '../../utils/Requests/AxiosWrapper'
 
  const Wrapper = styled.div`
    margin-left: auto;
@@ -39,6 +39,7 @@ const Airline = (props) => {
   const [loaded, setLoaded] = useState(false)
 
   useEffect(()=> {
+    console.log(props);
     const id = props.match.params.id
 
     axios.get(`/airlines/${id}`)
@@ -59,24 +60,15 @@ const Airline = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
+    const csrfToken = document.querySelector('[name=csrf-token]').content
+    axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
+
     const airline_id = parseInt(airline.data.id)
-    AxiosWrapper.post('/reviews', { ...review, airline_id })
-    .then( resp => {
-      setReviews([...reviews, airline.data, resp.data])
-      setReview({ title: '', description: '', score: 0 })
-      setError('')
+    axios.post('/reviews', {review, airline_id})
+    .then( res => {
+      debugger
     })
-    .catch( resp => {
-      let error
-      switch(resp.message){
-        case "Request failed with status code 401":
-          error = 'Please log in to leave a review.'
-          break
-        default:
-          error = 'Something went wrong.'
-      }
-      setError(error)
-    })
+    .catch( res => {})
   }
 
   // // Destroy a review

@@ -3,7 +3,7 @@ class ReviewsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :rescue_record_not_found
 
     def create
-        review = Review.create(review_params)
+        review = airline.reviews.create(review_params)
         render json: review, status: :created
     end
     
