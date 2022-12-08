@@ -29,6 +29,6 @@ class ReviewsController < ApplicationController
     end
 
     def airline
-        @airline ||= Airline.find(params[airline_id])
+        @airline ||= Airline.find(params[:airline_id])
     end
 end

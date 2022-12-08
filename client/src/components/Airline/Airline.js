@@ -53,23 +53,40 @@ const Airline = (props) => {
 
   // Modify text in review form
   const handleChange = (e) => {
+    e.preventDefault()
     setReview(Object.assign({}, review, {[e.target.name]: e.target.value}))
+    console.log('review:', review) ;
   }
 
   // Create a review
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    const csrfToken = document.querySelector('[name=csrf-token]').content
-    axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
+    // const csrfToken = document.querySelector('[name=csrf-token]').content
+    // axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
 
-    const airline_id = parseInt(airline.data.id)
-    axios.post('/reviews', {review, airline_id})
-    .then( res => {
-      debugger
+    // const airline_id = parseInt(airline.data.id)
+    // axios.post('/reviews', {review, airline_id})
+    // .then( res => {
+    //   debugger
+    // })
+    // .catch( res => {})
+
+    fetch(`/reviews`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(review),
     })
-    .catch( res => {})
-  }
+      .then((res) => res.json())
+      .then((resp) => {
+        setReviews([...reviews, resp.data])
+        setReview({ title: '', description: '', score: 0 })
+      })
+    e.target.reset();
+  
 
   // // Destroy a review
   // const handleDestroy = (id, e) => {
@@ -84,7 +101,7 @@ const Airline = (props) => {
   //     setReviews(included)
   //   })
   //   .catch( data => console.log('Error', data) )
-  // }
+  }
 
   // set score
   const setRating = (score, e) => {
