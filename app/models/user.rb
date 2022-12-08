@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+    #require 'active_support/core_ext'
+
     has_many :reviews
     has_many :airlines, through: :reviews
 
